@@ -16,7 +16,6 @@ const usuarioObjeto = {
 }
 
 
-
 let endPoinLogin = "https://ctd-todo-api.herokuapp.com/v1/users/login"
 let configuração = {
     method: 'POST',
@@ -24,7 +23,7 @@ let configuração = {
     Headers: {
         'content-type': 'application/json'
     },
-    body: loginUsuarioJson
+    body: usuarioObjeto
 };
 
 fetch(endPoinLogin, configuração)
