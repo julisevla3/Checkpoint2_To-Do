@@ -12,13 +12,47 @@ let emailEValido = false;
 //Definindo objeto
 const usuarioObjeto = {
     email: "",
-    senha: "",
+    password: "",
 }
 
-botaoAcessar.addEventListener('click', function(evento){
+
+
+let endPoinLogin = "https://ctd-todo-api.herokuapp.com/v1/users/login"
+let configuração = {
+    method: 'POST',
+  
+    Headers: {
+        'content-type': 'application/json'
+    },
+    body: loginUsuarioJson
+};
+
+fetch(endPoinLogin, configuração)
+    .then(
+        resultado => {
+            return resultado.json
+        }
+    )
+
+    .then(resultado => {
+        console.log(resultado);
+    }
+
+    )
+    .catch(
+        erros => {
+            console.log(erros);
+        }
+    );
+
+
+
+
+
+botaoAcessar.addEventListener('click', function (evento) {
 
     if (validacaoTelaDeLogin()) {
-        
+
         //Normalizando as informações
         campoEmailLoginNormalizado = retiraEspacosDeUmValor(campoEmailLogin.value);
         campoSenhaLoginNormalizado = retiraEspacosDeUmValor(campoSenhaLogin.value);
@@ -26,7 +60,7 @@ botaoAcessar.addEventListener('click', function(evento){
 
         //Populando o objeto com as informações normalizadas
         usuarioObjeto.email = campoEmailLoginNormalizado;
-        usuarioObjeto.senha = campoSenhaLoginNormalizado;
+        usuarioObjeto.password = campoSenhaLoginNormalizado;
 
         console.log(usuarioObjeto);
     } else {
@@ -37,7 +71,7 @@ botaoAcessar.addEventListener('click', function(evento){
 });
 
 //Validando o campo de Email
-campoEmailLogin.addEventListener('blur', function() {
+campoEmailLogin.addEventListener('blur', function () {
     //Captura o elemento "small"
     let inputEmailValidacao = document.getElementById('inputEmailValidacao');
 
@@ -47,7 +81,7 @@ campoEmailLogin.addEventListener('blur', function() {
         campoEmailLogin.style.border = ``
         emailEValido = true;
 
-    //Se o campo estiver sem nenhum valor...
+        //Se o campo estiver sem nenhum valor...
     } else {
         inputEmailValidacao.innerText = "Campo obrigatório";
         inputEmailValidacao.style.color = "#EE1729EC"
@@ -61,7 +95,7 @@ campoEmailLogin.addEventListener('blur', function() {
     validacaoTelaDeLogin();
 });
 
-function validacaoTelaDeLogin () {
+function validacaoTelaDeLogin() {
     if (emailEValido) {
         botaoAcessar.removeAttribute('disabled')
         botaoAcessar.innerText = "Acessar";
