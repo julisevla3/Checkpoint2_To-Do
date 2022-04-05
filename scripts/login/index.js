@@ -12,7 +12,7 @@ let emailEValido = false;
 //Definindo objeto
 const usuarioObjeto = {
     email: "",
-    senha: "",
+    password: "",
 }
 
 botaoAcessar.addEventListener('click', function(evento){
@@ -26,7 +26,7 @@ botaoAcessar.addEventListener('click', function(evento){
 
         //Populando o objeto com as informações normalizadas
         usuarioObjeto.email = campoEmailLoginNormalizado;
-        usuarioObjeto.senha = campoSenhaLoginNormalizado;
+        usuarioObjeto.password = campoSenhaLoginNormalizado;
 
         console.log(usuarioObjeto);
     } else {
