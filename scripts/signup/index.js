@@ -5,6 +5,12 @@ let campoEmail = document.getElementById("inputEmail");
 let campoSenha = document.getElementById("inputSenha");
 let campoRepetirSenha = document.getElementById("inputRepetirSenha");
 
+//variaveis que serão normalizadas
+let campoNomeNormalizado;
+let campoApelidoNormalizado;
+let campoEmailNormalizado;
+
+//Capturando o botão criar conta
 let botaoCriarConta = document.getElementById("botaoCriarConta");
 
 //Criação das tags para validação de cada campo
@@ -21,6 +27,59 @@ const novoUsuarioObjeto = {
     email: "",
     password: ""
 }
+
+botaoCriarConta.addEventListener('click', function(ev){
+  if(camposValidados()) {
+    //Nomralizar as informações
+    campoNomeNormalizado = retiraEspacosDeUmValor(campoNome.value);
+    campoApelidoNormalizado = retiraEspacosDeUmValor(campoApelido.value);
+    campoEmailNormalizado = converteValorRecebidoParaMinusculo(campoEmail.value);
+
+    //Populando os campos do objeto com os valores do Input normalizados
+    novoUsuarioObjeto.firstName = campoNomeNormalizado;
+    novoUsuarioObjeto.lastName = campoApelidoNormalizado;
+    novoUsuarioObjeto.email = campoEmailNormalizado;
+    novoUsuarioObjeto.password = campoRepetirSenha.value;
+
+    let novoUsuarioJson = JSON.stringify(novoUsuarioObjeto); 
+    
+
+    //Itens do fetch, para soolicitar dados da forma correta para a API
+    let endPointNovoUsuario = "https://ctd-todo-api.herokuapp.com/v1/users";
+    let configuraçãoNovoUsuario = {
+        method: 'POST',
+        body: novoUsuarioJson,
+        headers: {
+            'content-type': 'application/json'
+        }
+    };
+
+    fetch(endPointNovoUsuario, configuraçãoNovoUsuario)
+    .then(function(resultado){
+        console.log(resultado.status);
+
+        if (resultado.status == 201) {
+            alert("Usuario criado com sucesso");
+            location.href = "index.html";
+        } if (resultado.status == 400) {
+            alert("O usuario já existe")
+        } 
+        return resultado.json();
+    })
+    .then(function(resultado) {
+        console.log(resultado);
+        
+    }).catch(function(erro) {
+        console.log(erro);
+    });
+
+    ev.preventDefault();
+  } else {
+    ev.preventDefault();
+
+  }
+})
+
 
 // Validação Campo Nome
 campoNome.addEventListener('blur', function(){
@@ -39,10 +98,6 @@ campoNome.addEventListener('blur', function(){
         campoNome.style.border = "solid 1px red";
         nomeValido = false;
     }
-    camposValidados(nomeValido); 
-    camposValidados(apelidoValido); 
-    camposValidados(emailValido); 
-    camposValidados(senhaValida);
 });
 
 //Validação campo Apelido
@@ -63,10 +118,6 @@ campoApelido.addEventListener('blur', function(){
         campoApelido.style.border = "solid 1px red"
         apelidoValido = false;
     }
-    camposValidados(nomeValido); 
-    camposValidados(apelidoValido); 
-    camposValidados(emailValido); 
-    camposValidados(senhaValida);
     })
 
 //Validação campo Email
@@ -94,12 +145,6 @@ campoEmail.addEventListener('blur', function() {
         campoEmail.style.border = "solid 1px red"
         emailValido = false;
     }
-    camposValidados(nomeValido); 
-    camposValidados(apelidoValido); 
-    camposValidados(emailValido); 
-    camposValidados(senhaValida);
-    
-
 });
 
 //Validação campo SENHA - Deve ter pelo menos 1 número / Deve ter ao menos 1 maiusculo / Deve ter ao menos 1 minusculo / no mínimo 6 caracteres
@@ -129,10 +174,6 @@ campoSenha.addEventListener('blur', function(){
         senhaValida = false;
     }
 
-    camposValidados(nomeValido); 
-    camposValidados(apelidoValido); 
-    camposValidados(emailValido); 
-    camposValidados(senhaValida);
 })
 
 //Validação campo REPETIR SENHA - Deve ter pelo menos 1 número / Deve ter ao menos 1 maiusculo / Deve ter ao menos 1 minusculo / no mínimo 6 caracteres
@@ -154,18 +195,20 @@ campoRepetirSenha.addEventListener('blur', function(){
         repetirSenhaValida = false;
 
     }
-
+    camposValidados();
 })
 
 //Função para alterar visualização do botão caso esteje ou não validado
 
-function camposValidados(campo) {
-    if (campo == true) {
+function camposValidados() {
+    if (repetirSenhaValida === true) {
         botaoCriarConta.removeAttribute('disabled');
+        return true;
         
     } else {
         botaoCriarConta.setAttribute('disabled', true);
         evento.preventDefault();
+        return false;
         
     }
 }
