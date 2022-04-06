@@ -27,6 +27,33 @@ const novoUsuarioObjeto = {
     email: "",
     password: ""
 }
+let endPoinLogin = "https://ctd-todo-api.herokuapp.com/v1/users"
+let configuração = {
+    method: 'POST',
+
+    Headers: {
+        'content-type': 'application/json'
+    },
+    body: novoUsuarioObjeto
+};
+
+fetch(endPoinLogin, configuração)
+    .then(
+        resultado => {
+            return resultado.json
+        }
+    )
+
+    .then(resultado => {
+        console.log(resultado);
+    }
+
+    )
+    .catch(
+        erros => {
+            console.log(erros);
+        }
+    );
 
 botaoCriarConta.addEventListener('click', function(ev){
   if(camposValidados()) {
