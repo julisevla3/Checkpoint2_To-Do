@@ -36,6 +36,7 @@ botaoAcessar.addEventListener("click", function (evento) {
         "content-type": "application/json",
       },
     };
+
     fetch(endPoinLogin, configuração)
       .then((resultado) => {
         console.log(resultado.status);
@@ -48,7 +49,10 @@ botaoAcessar.addEventListener("click", function (evento) {
       })
 
       .then((resultado) => {
-        console.log(resultado);
+        console.log(resultado.jwt);
+        localStorage.setItem("jwt", resultado.jwt)
+        
+      
       })
       .catch((erros) => {
         console.log(erros);
@@ -80,9 +84,9 @@ campoEmailLogin.addEventListener("blur", function () {
     inputEmailValidacao.style.fontWeight = "bold";
     campoEmailLogin.style.border = `1px solid #EE1729EC`;
     emailEValido = false;
-  }
+  };
 
-  //Chama a função de validar, para "atualizar" o status da validação principal da tela de login
+    //Chama a função de validar, para "atualizar" o status da validação principal da tela de login
   validacaoTelaDeLogin();
 });
 
