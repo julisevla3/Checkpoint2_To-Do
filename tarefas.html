@@ -34,7 +34,7 @@
     <div class="user-info">
       <p>Nome usuário</p>
       <div class="user-image"></div>
-      <p id="closeApp">Finalizar sessão</i>
+      <p onclick="closeApp()" id="closeApp">Finalizar sessão</i>
       </p>
     </div>
   </header>
@@ -43,7 +43,7 @@
   <form class="nova-tarefa">
     <div class="not-done "></div>
     <input id="novaTarea" type="text" placeholder="Nova tarefa">
-    <button type="submit">
+    <button onclick="criarTarefa()" type="submit">
       <img src="./assets/plus.png" alt="Adicionar uma nova tarefa">
     </button>
   </form>
@@ -54,25 +54,10 @@
       <li class="tarefa">
         <div class="not-done"></div>
         <div class="descricao">
-          <p class="nome">Nova tarefa</p>
+          <p class="nome"></p>
           <p class="timestamp">Criada em: 15/07/21</p>
         </div>
       </li>
-      <li class="tarefa">
-        <div class="not-done"></div>
-        <div class="descricao">
-          <p class="nome">Nova tarefa</p>
-          <p class="timestamp">Criada em: 15/07/21</p>
-        </div>
-      </li>
-      <li class="tarefa">
-        <div class="not-done"></div>
-        <div class="descricao">
-          <p class="nome">Nova tarefa</p>
-          <p class="timestamp">Criada em: 15/07/21</p>
-        </div>
-      </li>
-
     </div>
   </ul>
 
