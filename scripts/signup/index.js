@@ -1,13 +1,13 @@
 //Capturando as informações
 let campoNome = document.getElementById("inputName");
-let campoApelido = document.getElementById("inputApelido");
+let campoSobrenome = document.getElementById("inputSobrenome");
 let campoEmail = document.getElementById("inputEmail");
 let campoSenha = document.getElementById("inputSenha");
 let campoRepetirSenha = document.getElementById("inputRepetirSenha");
 
 //variaveis que serão normalizadas
 let campoNomeNormalizado;
-let campoApelidoNormalizado;
+let campoSobrenomeNormalizado;
 let campoEmailNormalizado;
 
 //Capturando o botão criar conta
@@ -15,7 +15,7 @@ let botaoCriarConta = document.getElementById("botaoCriarConta");
 
 //Criação das tags para validação de cada campo
 let nomeValido = false;
-let apelidoValido = false;
+let sobrenomeValido = false;
 let emailValido = false;
 let senhaValida = false;
 let repetirSenhaValida = false;
@@ -59,12 +59,12 @@ botaoCriarConta.addEventListener('click', function(ev){
   if(camposValidados()) {
     //Nomralizar as informações
     campoNomeNormalizado = retiraEspacosDeUmValor(campoNome.value);
-    campoApelidoNormalizado = retiraEspacosDeUmValor(campoApelido.value);
+    campoSobrenomeNormalizado = retiraEspacosDeUmValor(campoSobrenome.value);
     campoEmailNormalizado = converteValorRecebidoParaMinusculo(campoEmail.value);
 
     //Populando os campos do objeto com os valores do Input normalizados
     novoUsuarioObjeto.firstName = campoNomeNormalizado;
-    novoUsuarioObjeto.lastName = campoApelidoNormalizado;
+    novoUsuarioObjeto.lastName = campoSobrenomeNormalizado;
     novoUsuarioObjeto.email = campoEmailNormalizado;
     novoUsuarioObjeto.password = campoRepetirSenha.value;
 
@@ -127,23 +127,23 @@ campoNome.addEventListener('blur', function(){
     }
 });
 
-//Validação campo Apelido
-campoApelido.addEventListener('blur', function(){
+//Validação campo Sobrenome
+campoSobrenome.addEventListener('blur', function(){
 
-    let campoApelidoValidacao = document.getElementById('campoApelidoValidacao');
+    let campoSobrenomeValidacao = document.getElementById('campoSobrenomeValidacao');
 
-    if (campoApelido.value != "") {
-        campoApelidoValidacao.innerText = "";
-        campoApelido.style.border = "";
-        apelidoValido = true;
+    if (campoSobrenome.value != "") {
+        campoSobrenomeValidacao.innerText = "";
+        campoSobrenome.style.border = "";
+        sobrenomeValido = true;
 
     } else {
-        campoApelidoValidacao.innerText = "Entre com o apelido";
-        campoApelidoValidacao.style.color = "red";
-        campoApelidoValidacao.style.fontSize = "8pt"
-        campoApelidoValidacao.style.fontWeight = "bold";
-        campoApelido.style.border = "solid 1px red"
-        apelidoValido = false;
+        campoSobrenomeValidacao.innerText = "Entre com o Sobrenome";
+        campoSobrenomeValidacao.style.color = "red";
+        campoSobrenomeValidacao.style.fontSize = "8pt"
+        campoSobrenomeValidacao.style.fontWeight = "bold";
+        campoSobrenome.style.border = "solid 1px red"
+        sobrenomeValido = false;
     }
     })
 
