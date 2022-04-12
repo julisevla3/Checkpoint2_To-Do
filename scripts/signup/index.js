@@ -205,7 +205,7 @@ campoSenha.addEventListener('blur', function(){
 
 //Validação campo REPETIR SENHA - Deve ter pelo menos 1 número / Deve ter ao menos 1 maiusculo / Deve ter ao menos 1 minusculo / no mínimo 6 caracteres
 
-campoRepetirSenha.addEventListener('blur', function(){
+campoRepetirSenha.addEventListener('keyup', function(){
 
     let campoRepetirSenhaValidacao = document.getElementById('campoRepetirSenhaValidacao');
 
