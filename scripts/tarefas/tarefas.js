@@ -78,3 +78,19 @@ function usuarioLogado() {
      
   }
 }
+
+function manipulandoTarefasusuario(listaDeTarefas){
+  console.log(listaDeTarefas);
+
+  for (let tarefa of listaDeTarefas){
+    console.log(tarefa.id); //description
+  }
+}
+
+if (tarefa.completed) {
+  //tarefas terminadas
+  console.log(tarefa);
+} else{
+  //tarefas pendentes
+  console.log(tarefa.completed);
+}
