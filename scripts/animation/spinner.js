@@ -15,7 +15,7 @@ function exibirSpinner() {
 
 }
 
-function eocultarSpinner() {
+function ocultarSpinner() {
     let body = document.createElement("body")
     let spinner = document.querySelector(".loader")
 
