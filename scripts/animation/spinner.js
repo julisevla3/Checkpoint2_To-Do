@@ -17,15 +17,13 @@ function exibirSpinner() {
 
 function ocultarSpinner() {
     let body = document.createElement("body")
+    
     let spinner = document.querySelector(".loader")
 
-body.removeChild(spinner)
+    // left.classList.delete("hidden")
+    // right.classList.delete("hidden")
 
-
-
-    left.classList.delete("hidden")
-    right.classList.delete("hidden")
-
+    body.removeChild(spinner)
 }
 
 
@@ -33,4 +31,3 @@ exibirSpinner();
 
 //sweetalert2
 
-.h
