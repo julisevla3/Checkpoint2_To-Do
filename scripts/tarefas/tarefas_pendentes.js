@@ -13,7 +13,7 @@ function rederizaTarefasPendentes(tarefa) {
          </div>
         `             
 
-tarefasPendente.append
+tarefasPendente.appendChild(liTarefasPendentes)
 
 }
 

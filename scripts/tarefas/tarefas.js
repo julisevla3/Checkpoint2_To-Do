@@ -1,7 +1,7 @@
 //Verifica se usuários está logado
 window.onload = function () {
-    usuarioLogado();
-    //buscaTask();
+  usuarioLogado();
+  //buscaTask();
 }
 const storage = localStorage;
 function usuarioLogado() {
@@ -57,13 +57,13 @@ function usuarioLogado() {
 
     var myHeaders = new Headers();
     myHeaders.append("Authorization", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzdWFyaW9zMDJAcG9zdG1hbi5jb20iLCJpZCI6MjU0MiwiaWF0IjoxNjQ5NDcxNTA0fQ.6TmsmdjYz6QGnL8B06OC7eKgFrBIzq8fX6W3DDpDK0E");
-    
+
     var requestOptions = {
       method: 'GET',
       headers: myHeaders,
       redirect: 'follow'
     };
-    
+
     fetch("https://ctd-todo-api.herokuapp.com/v1/tasks", requestOptions)
       .then(response => response.text())
       .then(result => {
@@ -75,22 +75,87 @@ function usuarioLogado() {
         nomeTask.style.color = "red";
       })
       .catch(error => console.log('error', error));
-     
+
   }
 }
 
-function manipulandoTarefasusuario(listaDeTarefas){
+
+/////@@@@@ Cadastrando uma nova tarefa para o susuario logado
+let botaoCadastrar = document.getElementById("botaoTarefas");
+botaoCadastrar.addEventListener('click', evento => {
+  evento.preventDefault();
+
+  let descricaoTarefas = document.getElementById('novaTarefa');
+  let radioGrupo = document.getElementsByName('grupoRadio')
+  let radioSelecionado;
+  if (descricaoTarefas.value != "") {
+
+    //Verifica qual foi o radio selecionado e armazena em uma variável
+    radioGrupo.forEach(radio => radioSelecionado = radio.checked);
+
+    //Cria objeto JS que será convertido para Json
+
+    const objetoTarefa = {
+      description: descricaoTarefas.value,
+      completed: radioSelecionado
+    }
+
+    let objetoTarefaJson = JSON.stringify(objetoTarefa);
+
+
+    //@@@ Comunicando com a API
+    let endPoinCriarNovaTarefa = "https://ctd-todo-api.herokuapp.com/v1/tasks";
+
+    let configuraçoesRequisicoes = {
+      method: 'POST',
+      body: objetoTarefaJson,
+
+      headers: {
+        'Content-type': 'aplication/json',
+
+        'Authorization': `${cookieJwt}`
+      }
+    }
+
+
+
+//@@@@ chamando API
+fetch(endPoinCriarNovaTarefa, configuraçoesRequisicoes)
+  .then((response) => {
+    if (response.status == 201) {
+      return response.json
+    }
+    // Se o código for diferente do sucesso (201), lança um throw para que a execução caiua no Catch()
+    throw response;
+
+  }).then(resposta => {
+    console.log(resposta);
+
+    window.location.reload()
+  })
+  .catch(error => {
+    console.log(error)
+
+  })
+
+
+function manipulandoTarefasusuario(listaDeTarefas) {
   console.log(listaDeTarefas);
 
-  for (let tarefa of listaDeTarefas){
+  for (let tarefa of listaDeTarefas) {
     console.log(tarefa.id); //description
   }
 }
 
-if (tarefa.completed) {
-  //tarefas terminadas
-  console.log(tarefa);
-} else{
-  //tarefas pendentes
-  console.log(tarefa.completed);
-}
+      if (tarefa.completed) {
+        //tarefas terminadas
+        console.log(tarefa);
+      } else {
+        //tarefas pendentes
+        console.log(tarefa.completed);
+      }
+
+      
+  }
+
+})
