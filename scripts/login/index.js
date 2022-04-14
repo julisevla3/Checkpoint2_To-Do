@@ -102,3 +102,7 @@ function validacaoTelaDeLogin() {
     return false;
   }
 }
+
+
+
+exibirSpinner();

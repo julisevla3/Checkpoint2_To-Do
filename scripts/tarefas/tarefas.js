@@ -80,7 +80,9 @@ function usuarioLogado() {
 }
 
 
-/////@@@@@ Cadastrando uma nova tarefa para o susuario logado
+
+
+/////@@@@@ Cadastrando uma nova tarefa para o usuario logado
 let botaoCadastrar = document.getElementById("botaoTarefas");
 botaoCadastrar.addEventListener('click', evento => {
   evento.preventDefault();
@@ -159,3 +161,4 @@ function manipulandoTarefasusuario(listaDeTarefas) {
   }
 
 })
+
