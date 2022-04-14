@@ -21,6 +21,9 @@
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
+  <script src="./scripts/tarefas/tarefas.js" defer></script>
+
+
 
   <title>To-Do App</title>
 </head>
@@ -32,6 +35,7 @@
     </nav>
 
     <div class="user-info">
+
       <p id="nomeUsuario"></p>
       <div class="user-image"></div>
       <p type="submit" id="closeApp">Finalizar sessão</i>
@@ -41,6 +45,7 @@
 
 
   <form class="nova-tarefa">
+
     <div  class="not-done "></div>
     <input id="novaTarefa" type="text" placeholder="Nova tarefa">
     <button id="botaoAddTarefa" type="submit">
@@ -54,17 +59,11 @@
       <!-- <li class="tarefa">
         <div class="not-done"></div>
         <div class="descricao">
-          <p class="nome">Nova tarefa</p>
+          <p class="nome"></p>
           <p class="timestamp">Criada em: 15/07/21</p>
         </div>
       </li>
-      <li class="tarefa">
-        <div class="not-done"></div>
-        <div class="descricao">
-          <p class="nome">Nova tarefa</p>
-          <p class="timestamp">Criada em: 15/07/21</p>
-        </div>
-      </li>
+
       <li class="tarefa">
         <div class="not-done"></div>
         <div class="descricao">
@@ -72,14 +71,14 @@
           <p class="timestamp">Criada em: 15/07/21</p>
         </div> -->
       </li>
-
-    </div>
+   </div>
   </ul>
 
   <h2 class="titulo-terminadas">Tarefas terminadas</h2>
   <ul class="tarefas-terminadas">
 
   </ul>
+
 
   <script src="./scripts/tarefas/tarefas.js" defer ></script>
   <script src="./scripts/tarefas/tarefas_concluidas.js" defer ></script>

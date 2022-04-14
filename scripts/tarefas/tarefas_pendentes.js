@@ -1,3 +1,4 @@
+
 //renderizar lista de tarefas pendentes
 
 var itemUlTarefasPendentes = document.querySelector('.tarefas-pendentes')
@@ -22,3 +23,7 @@ function renderizaTarefasPendentes(listaTarefas) {
     itemUlTarefasPendentes.appendChild(novoItemLiTarefa);
 
 }
+
+//@@@@@@formatação da data
+// so colocar, toLocalString("pt-br") pra deixar formatado
+
