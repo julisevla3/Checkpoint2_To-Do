@@ -51,7 +51,7 @@ botaoAcessar.addEventListener("click", function (evento) {
       .then((resultado) => {
         console.log(resultado.jwt);
         localStorage.setItem("jwt", resultado.jwt)
-        
+        location.href = "tarefas.html"
       
       })
       .catch((erros) => {
