@@ -42,6 +42,7 @@ botaoAcessar.addEventListener("click", function (evento) {
         console.log(resultado.status);
         if(resultado.status == 201) {
             alert("Usuario logado com sucesso")
+            window.location.href = "tarefas.html";
         } if (resultado.status == 400) {
             alert("Existe alguma informação divergente")
         }
