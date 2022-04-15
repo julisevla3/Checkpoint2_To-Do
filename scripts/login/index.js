@@ -45,6 +45,7 @@ botaoAcessar.addEventListener("click", function (evento) {
             window.location.href = "tarefas.html";
         } if (resultado.status == 400) {
             alert("Existe alguma informação divergente")
+            window.location.href = "index.html";
         }
         return resultado.json();
       })
@@ -52,7 +53,7 @@ botaoAcessar.addEventListener("click", function (evento) {
       .then((resultado) => {
         console.log(resultado.jwt);
         localStorage.setItem("jwt", resultado.jwt)
-        location.href = "tarefas.html"
+        
       
       })
       .catch((erros) => {
