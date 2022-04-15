@@ -1,8 +1,9 @@
+
 //capturando as tags html
 var campoNomeUsuario = document.getElementById('nomeUsuario');
 var campoNovaTarefa = document.getElementById('novaTarefa');
 var botaoAddTarefa = document.getElementById('botaoAddTarefa');
-var botaoFinalizarSessao = document.getElementById('closeApp')
+var botaoFinalizarSessao = document.getElementById('closeApp');
 
 window.onload = function() {
    
@@ -97,7 +98,7 @@ window.onload = function() {
     })
 
     //Função para encerrar sessão
-    botaoFinalizarSessao.addEventListener('click', function(evento) {
+    botaoFinalizarSessao.addEventListener('click', function() {
         localStorage.removeItem('jwt')
         location.reload();
     })

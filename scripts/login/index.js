@@ -42,8 +42,10 @@ botaoAcessar.addEventListener("click", function (evento) {
         console.log(resultado.status);
         if(resultado.status == 201) {
             alert("Usuario logado com sucesso")
+            window.location.href = "tarefas.html";
         } if (resultado.status == 400) {
             alert("Existe alguma informação divergente")
+            window.location.href = "index.html";
         }
         return resultado.json();
       })
@@ -51,7 +53,7 @@ botaoAcessar.addEventListener("click", function (evento) {
       .then((resultado) => {
         console.log(resultado.jwt);
         localStorage.setItem("jwt", resultado.jwt)
-        location.href = "tarefas.html"
+        
       
       })
       .catch((erros) => {
@@ -101,3 +103,4 @@ function validacaoTelaDeLogin() {
     return false;
   }
 }
+
