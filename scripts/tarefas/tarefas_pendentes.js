@@ -1,3 +1,4 @@
+
 //renderizar lista de tarefas pendentes
 
 var itemUlTarefasPendentes = document.querySelector('.tarefas-pendentes')
@@ -44,3 +45,7 @@ tarefasPendente.appendChild(liTarefasPendentes)
 
 //@@@@@@formatação da data
 // so colocar, toLocalString("pt-br") pra deixar formatado
+
+//@@@@@@formatação da data
+// so colocar, toLocalString("pt-br") pra deixar formatado
+
