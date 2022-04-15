@@ -26,6 +26,15 @@ body.removeChild(spinner)
     left.classList.delete("hidden")
     right.classList.delete("hidden")
 
+function ocultarSpinner() {
+    let body = document.createElement("body")
+    
+    let spinner = document.querySelector(".loader")
+
+    // left.classList.delete("hidden")
+    // right.classList.delete("hidden")
+
+    body.removeChild(spinner)
 }
 
 
