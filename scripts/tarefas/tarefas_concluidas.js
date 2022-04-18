@@ -1,3 +1,5 @@
+//@@@ Renderiza lista de tarefas concluidas
+
 var itemUlTarefasConcluidas = document.querySelector('.tarefas-terminadas')
 
 
@@ -9,7 +11,7 @@ function rederizaTarefasConcluidas(listaTarefas) {
     novoItemLiTarefaConcluida.innerHTML =
         `
     <li class="tarefa">
-        <div class="done" id="${listaTarefas.id}"></div>
+        <div class="not-done" id="${listaTarefas.id}"></div>
         <div class="descricao">
 
           <p class="nome">${listaTarefas.description}</p>          
