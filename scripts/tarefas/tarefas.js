@@ -186,8 +186,8 @@ function usuarioLogado() {
 }
 
 
-/////@@@@@ Cadastrando uma nova tarefa para o susuario logado
-let botaoCadastrar = document.getElementById("botaoTarefas");
+/////@@@@@ Cadastrando uma nova tarefa para o usuario logado
+let botaoCadastrar = document.getElementById("botaoAddTarefa");
 botaoCadastrar.addEventListener('click', evento => {
   evento.preventDefault();
 
