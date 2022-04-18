@@ -55,61 +55,71 @@ fetch(endPoinLogin, configuração)
         }
     );
 
-botaoCriarConta.addEventListener('click', function(ev){
-  if(camposValidados()) {
-    //Nomralizar as informações
-    campoNomeNormalizado = retiraEspacosDeUmValor(campoNome.value);
-    campoSobrenomeNormalizado = retiraEspacosDeUmValor(campoSobrenome.value);
-    campoEmailNormalizado = converteValorRecebidoParaMinusculo(campoEmail.value);
+botaoCriarConta.addEventListener('click', function (ev) {
 
-    //Populando os campos do objeto com os valores do Input normalizados
-    novoUsuarioObjeto.firstName = campoNomeNormalizado;
-    novoUsuarioObjeto.lastName = campoSobrenomeNormalizado;
-    novoUsuarioObjeto.email = campoEmailNormalizado;
-    novoUsuarioObjeto.password = campoRepetirSenha.value;
 
-    let novoUsuarioJson = JSON.stringify(novoUsuarioObjeto); 
-    
+    if (camposValidados()) {
+        ev.preventDefault();
+        //Nomralizar as informações
+        campoNomeNormalizado = retiraEspacosDeUmValor(campoNome.value);
+        campoSobrenomeNormalizado = retiraEspacosDeUmValor(campoSobrenome.value);
+        campoEmailNormalizado = converteValorRecebidoParaMinusculo(campoEmail.value);
 
-    //Itens do fetch, para soolicitar dados da forma correta para a API
-    let endPointNovoUsuario = "https://ctd-todo-api.herokuapp.com/v1/users";
-    let configuraçãoNovoUsuario = {
-        method: 'POST',
-        body: novoUsuarioJson,
-        headers: {
-            'content-type': 'application/json'
-        }
-    };
+        //Populando os campos do objeto com os valores do Input normalizados
+        novoUsuarioObjeto.firstName = campoNomeNormalizado;
+        novoUsuarioObjeto.lastName = campoSobrenomeNormalizado;
+        novoUsuarioObjeto.email = campoEmailNormalizado;
+        novoUsuarioObjeto.password = campoRepetirSenha.value;
 
-    fetch(endPointNovoUsuario, configuraçãoNovoUsuario)
-    .then(function(resultado){
-        console.log(resultado.status);
+        let novoUsuarioJson = JSON.stringify(novoUsuarioObjeto);
 
-        if (resultado.status == 201) {
-            alert("Usuario criado com sucesso");
-            location.href = "index.html";
-        } if (resultado.status == 400) {
-            alert("O usuario já existe")
-        } 
-        return resultado.json();
-    })
-    .then(function(resultado) {
-        console.log(resultado);
-        
-    }).catch(function(erro) {
-        console.log(erro);
-    });
 
-    ev.preventDefault();
-  } else {
-    ev.preventDefault();
+        //Itens do fetch, para soolicitar dados da forma correta para a API
+        let endPointNovoUsuario = "https://ctd-todo-api.herokuapp.com/v1/users";
+        let configuraçãoNovoUsuario = {
+            method: 'POST',
+            body: novoUsuarioJson,
+            headers: {
+                'content-type': 'application/json'
+            }
+        };
 
-  }
+        fetch(endPointNovoUsuario, configuraçãoNovoUsuario)
+            .then(function (resultado) {
+                console.log(resultado.status);
+
+                if (resultado.status == 201) {
+
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Your work has been saved',
+                        showConfirmButton: false,
+                        timer: 10000
+                    })
+                    location.href = "index.html";
+                } if (resultado.status == 400) {
+                    alert("O usuario já existe")
+                }
+                return resultado.json();
+            })
+            .then(function (resultado) {
+                console.log(resultado);
+
+            }).catch(function (erro) {
+                console.log(erro);
+            });
+
+
+    } else {
+        ev.preventDefault();
+
+    }
 })
 
 
 // Validação Campo Nome
-campoNome.addEventListener('blur', function(){
+campoNome.addEventListener('blur', function () {
 
     let campoNomeValidacao = document.getElementById('campoNomeValidacao');
 
@@ -128,7 +138,7 @@ campoNome.addEventListener('blur', function(){
 });
 
 //Validação campo Sobrenome
-campoSobrenome.addEventListener('blur', function(){
+campoSobrenome.addEventListener('blur', function () {
 
     let campoSobrenomeValidacao = document.getElementById('campoSobrenomeValidacao');
 
@@ -145,17 +155,17 @@ campoSobrenome.addEventListener('blur', function(){
         campoSobrenome.style.border = "solid 1px red"
         sobrenomeValido = false;
     }
-    })
+})
 
 //Validação campo Email
-campoEmail.addEventListener('blur', function() {
+campoEmail.addEventListener('blur', function () {
 
     let campoEmailValidacao = document.getElementById('campoEmailValidacao');
 
     function validarEmail(email) {
         var re = /\S+@\S+\.\S+/;
         return re.test(email);
-      }
+    }
 
     let testeEmail = validarEmail(campoEmail.value);
 
@@ -167,7 +177,7 @@ campoEmail.addEventListener('blur', function() {
     } else {
         campoEmailValidacao.innerText = "Entre com um email válido";
         campoEmailValidacao.style.color = "red";
-        campoEmailValidacao.style.fontSize = "8pt"; 
+        campoEmailValidacao.style.fontSize = "8pt";
         campoEmailValidacao.style.fontWeight = "bold";
         campoEmail.style.border = "solid 1px red"
         emailValido = false;
@@ -176,7 +186,7 @@ campoEmail.addEventListener('blur', function() {
 
 //Validação campo SENHA - Deve ter pelo menos 1 número / Deve ter ao menos 1 maiusculo / Deve ter ao menos 1 minusculo / no mínimo 6 caracteres
 
-campoSenha.addEventListener('blur', function(){
+campoSenha.addEventListener('blur', function () {
 
     let campoSenhaValidacao = document.getElementById('campoSenhaValidacao');
 
@@ -197,7 +207,7 @@ campoSenha.addEventListener('blur', function(){
         campoSenhaValidacao.style.color = "red";
         campoSenhaValidacao.style.fontSize = "8pt"
         campoSenhaValidacao.style.fontWeight = "bold"
-        campoSenha.style.border = "solid 1px red" 
+        campoSenha.style.border = "solid 1px red"
         senhaValida = false;
     }
 
@@ -205,7 +215,7 @@ campoSenha.addEventListener('blur', function(){
 
 //Validação campo REPETIR SENHA - Deve ter pelo menos 1 número / Deve ter ao menos 1 maiusculo / Deve ter ao menos 1 minusculo / no mínimo 6 caracteres
 
-campoRepetirSenha.addEventListener('keyup', function(){
+campoRepetirSenha.addEventListener('keyup', function () {
 
     let campoRepetirSenhaValidacao = document.getElementById('campoRepetirSenhaValidacao');
 
@@ -231,12 +241,12 @@ function camposValidados() {
     if (repetirSenhaValida === true) {
         botaoCriarConta.removeAttribute('disabled');
         return true;
-        
+
     } else {
         botaoCriarConta.setAttribute('disabled', true);
         evento.preventDefault();
         return false;
-        
+
     }
 }
 

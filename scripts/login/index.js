@@ -17,7 +17,12 @@ const usuarioObjeto = {
 
 botaoAcessar.addEventListener("click", function (evento) {
   if (validacaoTelaDeLogin()) {
+    evento.preventDefault();
+    mostrarSpinner();
+
+
     //Normalizando as informações
+
     campoEmailLoginNormalizado = retiraEspacosDeUmValor(campoEmailLogin.value);
     campoSenhaLoginNormalizado = retiraEspacosDeUmValor(campoSenhaLogin.value);
     campoEmailLoginNormalizado = converteValorRecebidoParaMinusculo(campoEmailLoginNormalizado);
@@ -40,12 +45,20 @@ botaoAcessar.addEventListener("click", function (evento) {
     fetch(endPoinLogin, configuração)
       .then((resultado) => {
         console.log(resultado.status);
-        if(resultado.status == 201) {
-            alert("Usuario logado com sucesso")
-            window.location.href = "tarefas.html";
+        if (resultado.status == 201) {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Your work has been saved',
+            showConfirmButton: false,
+            timer: 10000
+          })
+          window.location.href = "tarefas.html";
+          ocultarSpinner();
+
         } if (resultado.status == 400) {
-            alert("Existe alguma informação divergente")
-            window.location.href = "index.html";
+          alert("Existe alguma informação divergente")
+          window.location.href = "index.html";
         }
         return resultado.json();
       })
@@ -53,19 +66,22 @@ botaoAcessar.addEventListener("click", function (evento) {
       .then((resultado) => {
         console.log(resultado.jwt);
         localStorage.setItem("jwt", resultado.jwt)
-        
-      
+
+
       })
       .catch((erros) => {
         console.log(erros);
       });
-      
-    evento.preventDefault();
+
+
   } else {
     alert("Ambos os campos devem ser informados");
     evento.preventDefault(); //Não permite que o formulário seja executado / realizado o 'submit'
+    // ocultarSpinner();
+
   }
 });
+
 
 //Validando o campo de Email
 campoEmailLogin.addEventListener("blur", function () {
@@ -88,7 +104,7 @@ campoEmailLogin.addEventListener("blur", function () {
     emailEValido = false;
   };
 
-    //Chama a função de validar, para "atualizar" o status da validação principal da tela de login
+  //Chama a função de validar, para "atualizar" o status da validação principal da tela de login
   validacaoTelaDeLogin();
 });
 
@@ -101,9 +117,11 @@ function validacaoTelaDeLogin() {
     botaoAcessar.setAttribute("disabled", true);
     botaoAcessar.innerText = "Bloqueado";
     return false;
+
+
   }
+
 }
 
 
 
-exibirSpinner();
