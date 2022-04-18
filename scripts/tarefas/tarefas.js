@@ -126,38 +126,7 @@ window.onload = function () {
 
   listarTarefasConcluidas(endPointListarTarefas, configListarTarefas);
 
-  // document.body.addEventListener('click', function (event) {
-  //   if (event.target.className == 'not-done') {
-  //     console.log(event);
-  //   };
-  // });
-
-  //Evento tarefa concluida
-  // botaoFinalizaTarefa.addEventListener('click', function (evento) {
-
-  //   evento.preventDefault()
-
-  //   console.log('evento: ' + evento);
-
-  // objetoNovaTarefa.description = campoNovaTarefa.value;
-  // objetoNovaTarefa.completed = true;
-
-
-  // var novaTarefaJson = JSON.stringify(objetoNovaTarefa);
-
-  // var configCriarTarefa = {
-  //   method: "POST",
-  //   body: novaTarefaJson,
-  //   headers: {
-  //     "authorization": token,
-  //     "content-type": "application/json",
-  //   },
-  // }
-
-  // criarNovaTarefa(endPointCriarTarefa, configCriarTarefa)
-
-  // })
-
+  
   function teste() {
     console.log('TESTE');
   }
