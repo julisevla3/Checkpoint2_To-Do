@@ -11,10 +11,12 @@ function rederizaTarefasConcluidas(listaTarefas) {
         <div class="done" id="${listaTarefas.id}"></div>
         <div class="descricao">
           <p class="nome">${listaTarefas.description}</p>
-          <p class="timestamp">Criada em: ${listaTarefas.createdAt}</p>
+          <p class="timestamp"  >Criada em: .${listaTarefas.createdAt}</p>
           <button onclick=deletarTarefas(${listaTarefas.id})> <img src="./assets/Lixeira.png" height ="25" width="26" /> </button>
         </div>
       </li>
+
+      
     `
 
     itemUlTarefasConcluidas.appendChild(novoItemLiTarefaConcluida);

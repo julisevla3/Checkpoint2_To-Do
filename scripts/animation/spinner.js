@@ -42,4 +42,5 @@ exibirSpinner();
 
 //sweetalert2
 
-.h
+
+}
