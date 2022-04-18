@@ -128,7 +128,7 @@ function usuarioLogado() {
       console.log(usuarioName);
       var usuarioSobrenome = response.lastName;
       console.log(usuarioSobrenome);
-      let selectorNome = document.getElementById('nomezinho');
+      let selectorNome = document.getElementById('nomeUsuario');
       console.log(selectorNome);
       selectorNome.innerText = usuarioName + ' ' + usuarioSobrenome;
       selectorNome.style.color = "pink";
