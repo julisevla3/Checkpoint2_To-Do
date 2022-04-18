@@ -5,13 +5,13 @@ var itemUlTarefasPendentes = document.querySelector('.tarefas-pendentes')
 
 
 function renderizaTarefasPendentes(listaTarefas) {
-    
-    var novoItemLiTarefa = document.createElement('li')
 
-    novoItemLiTarefa.innerHTML =
+  var novoItemLiTarefa = document.createElement('li')
+
+  novoItemLiTarefa.innerHTML =
     `
     <li class="tarefa">
-        <div class="not-done" id="${listaTarefas.id}" ></div>
+        <div class="not-done" id="${listaTarefas.id}" onclick="concluirTarefa(${listaTarefas.id}, '${listaTarefas.description}')"></div>
         <div class="descricao">
           <p class="nome">${listaTarefas.description}</p>
           <p class="timestamp">Criada em: ${listaTarefas.createdAt}</p>
@@ -20,26 +20,45 @@ function renderizaTarefasPendentes(listaTarefas) {
       </li>
     `
 
-    itemUlTarefasPendentes.appendChild(novoItemLiTarefa);
+  itemUlTarefasPendentes.appendChild(novoItemLiTarefa);
 
 }
-let tarefasPendentesUl = document.querySelector(".tarefas-pendentes")
 
-function rederizaTarefasPendentes(tarefa) {
-    let liTarefaPendente = document.createElement('li')
-    liTarefaPendente.classList.add("tarefa")
 
-    liTarefaPendente.innerHTML =
-        `
-        <div class="not-done" id="${tarefa.id}"></div>
-         <div class="descricao">
-            <p class="nome">${tarefa.description}</p>
-            <p class="timestamp"><i class="far fa-calendar- i> ${tarefa.createdAt}</p>
-         </div>
-        `             
+function concluirTarefa(id, descricao) {
+  var token = localStorage.getItem("jwt");
+  var endPointUpdateTarefa = "https://ctd-todo-api.herokuapp.com/v1/tasks/" + id;
 
-tarefasPendente.appendChild(liTarefasPendentes)
+  var objetoTarefa = {
+    description: "",
+    completed: false
+  };
 
+  objetoTarefa.description = descricao;
+  objetoTarefa.completed = true;
+
+
+  var novaTarefaJson = JSON.stringify(objetoTarefa);
+
+  var configCriarTarefa = {
+    method: "PUT",
+    body: novaTarefaJson,
+    headers: {
+      "authorization": token,
+      "content-type": "application/json",
+    },
+  }
+
+  tarefaConcluida(endPointUpdateTarefa, configCriarTarefa)
+}
+
+function tarefaConcluida(endpoint, configuracao) {
+  fetch(endpoint, configuracao)
+    .then((resposta) => resposta.json())
+    .then(function (resultado) {
+      location.reload();
+      console.log(resultado);
+    })
 }
 
 
