@@ -30,7 +30,7 @@ form:after {
   height: 100%;
   top: 0;
   left: 0;
-  background: linear-gradient(var(--primary), var(--secondary));
+  background-color: brown;
 }
 
 
@@ -60,7 +60,7 @@ label {
 
 button {
   padding: .5em 3em;
-  background-color: var(--primary);
+  background-color: brown;
   color: white;
   margin-top: 2em;
   font-weight: 400;
