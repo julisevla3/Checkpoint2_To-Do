@@ -43,35 +43,35 @@ botaoAcessar.addEventListener("click", function (evento) {
     };
 
     fetch(endPoinLogin, configuração)
-      .then((resultado) => {
-        console.log(resultado.status);
-        if (resultado.status == 201) {
-          Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Your work has been saved',
-            showConfirmButton: false,
-            timer: 10000
-          })
-          window.location.href = "tarefas.html";
-          ocultarSpinner();
-
-        } if (resultado.status == 400) {
+    .then((resultado) => {
+      console.log(resultado.status);
+      if(resultado.status == 201) {
+          // alert("Usuario logado com sucesso")
+          
+          console.log(resultado);
+          // window.location.href = "tarefas.html";
+      } else if (resultado.status == 400) {
           alert("Existe alguma informação divergente")
           window.location.href = "index.html";
-        }
-        return resultado.json();
-      })
+      }
+      return resultado.json();
+    })
 
-      .then((resultado) => {
-        console.log(resultado.jwt);
-        localStorage.setItem("jwt", resultado.jwt)
+    .then((resultado) => {
+      console.log(resultado.jwt);
+      
 
-
-      })
-      .catch((erros) => {
-        console.log(erros);
-      });
+      setTimeout(() => {
+        localStorage.setItem("jwt", resultado.jwt);
+        window.location.href = "tarefas.html";
+      }, 4000);
+      
+      ocultarSpinner();
+    })
+    .catch((erros) => {
+      console.log(erros);
+    });
+    
 
 
   } else {
