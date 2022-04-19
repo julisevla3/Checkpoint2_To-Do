@@ -47,9 +47,10 @@ window.onload = function () {
     fetch(endPoint, config)
       .then((resposta) => resposta.json())
       .then(function (resposta) {
-
+        
         for (const tarefa of resposta) {
           if (tarefa.completed == false) {
+            document.getElementById("skeleton").remove();
             let arrayListaTarefas = tarefa
             renderizaTarefasPendentes(arrayListaTarefas);
             console.log(arrayListaTarefas);
@@ -75,6 +76,7 @@ window.onload = function () {
       .then(function (resultado) {
         location.reload();
         console.log(resultado);
+        
       })
   }
 
