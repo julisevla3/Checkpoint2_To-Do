@@ -12,7 +12,7 @@ function renderizaTarefasPendentes(listaTarefas) {
   novoItemLiTarefa.innerHTML =
     `
     <li class="tarefa">
-        <div class="not-done" id="${listaTarefas.id}" onclick="concluirTarefa(${listaTarefas.id}, '${listaTarefas.description}')"></div>
+        <div class="not-done" id="${listaTarefas.id}" ></div>
         <div class="descricao">
 
         <p class="nome">${listaTarefas.description}</p>   
@@ -22,6 +22,9 @@ function renderizaTarefasPendentes(listaTarefas) {
           ${addData.getHours()}:${addData.getMinutes()}
           </p>
 
+          <button onclick="concluirTarefa(${listaTarefas.id}, '${listaTarefas.description}')"> <img src="./assets/check.png" height ="25" width="26" />
+           </button>
+
           <button onclick=deletarTarefas(${listaTarefas.id})> <img src="./assets/Lixeira.png" height ="25" width="26" /> </button>
         </div>
       </li>
@@ -30,6 +33,7 @@ function renderizaTarefasPendentes(listaTarefas) {
   itemUlTarefasPendentes.appendChild(novoItemLiTarefa);
 
 }
+
 
 
 function concluirTarefa(id, descricao) {

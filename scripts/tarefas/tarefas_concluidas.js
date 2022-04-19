@@ -11,7 +11,7 @@ function rederizaTarefasConcluidas(listaTarefas) {
     novoItemLiTarefaConcluida.innerHTML =
         `
     <li class="tarefa">
-        <div class="not-done" id="${listaTarefas.id}"></div>
+        <div class="not-done" id="${listaTarefas.id}" ></div>
         <div class="descricao">
 
           <p class="nome">${listaTarefas.description}</p>          
@@ -20,6 +20,7 @@ function rederizaTarefasConcluidas(listaTarefas) {
           ${addData.toLocaleDateString()} às
           ${addData.getHours()}:${addData.getMinutes()}
           </p>
+          <button onclick="devolverTarefa(${listaTarefas.id}, '${listaTarefas.description}')"> <img src="./assets/arrow-up.png" height ="25" width="26" /> </button>
           <button onclick=deletarTarefas(${listaTarefas.id})> <img src="./assets/Lixeira.png" height ="25" width="26" /> </button>
         </div>
       </li>
@@ -29,3 +30,40 @@ function rederizaTarefasConcluidas(listaTarefas) {
     itemUlTarefasConcluidas.appendChild(novoItemLiTarefaConcluida);
 
 }
+
+function devolverTarefa(id, descricao) {
+  var token = localStorage.getItem("jwt");
+  var endPointUpdateTarefa = "https://ctd-todo-api.herokuapp.com/v1/tasks/" + id;
+
+  var objetoTarefa = {
+    description: "",
+    completed: false
+  };
+
+  objetoTarefa.description = descricao;
+  objetoTarefa.completed = false;
+
+
+  var novaTarefaJson = JSON.stringify(objetoTarefa);
+
+  var configCriarTarefa = {
+    method: "PUT",
+    body: novaTarefaJson,
+    headers: {
+      "authorization": token,
+      "content-type": "application/json",
+    },
+  }
+
+  tarefaDevolvida(endPointUpdateTarefa, configCriarTarefa)
+}
+
+function tarefaDevolvida(endpoint, configuracao) {
+  fetch(endpoint, configuracao)
+    .then((resposta) => resposta.json())
+    .then(function (resultado) {
+      location.reload();
+      console.log(resultado);
+    })
+}
+
