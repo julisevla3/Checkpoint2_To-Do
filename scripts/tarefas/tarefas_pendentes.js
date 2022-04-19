@@ -36,6 +36,7 @@ function renderizaTarefasPendentes(listaTarefas) {
 }
 
 
+
 function concluirTarefa(id, descricao) {
   var token = localStorage.getItem("jwt");
   var endPointUpdateTarefa = "https://ctd-todo-api.herokuapp.com/v1/tasks/" + id;
