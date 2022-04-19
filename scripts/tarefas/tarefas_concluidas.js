@@ -20,7 +20,7 @@ function rederizaTarefasConcluidas(listaTarefas) {
           ${addData.toLocaleDateString()} às
           ${addData.getHours()}:${addData.getMinutes()}
           </p>
-          <button onclick=deletarTarefas(${listaTarefas.id})> <img src="./assets/Lixeira.png" height ="25" width="26" /> </button>
+          <button onclick=deletarTarefas(${listaTarefas.id})> <img class="lixeiraDel" src="./assets/Lixeira.png" height ="25" width="26" /> </button>
         </div>
       </li>
       

@@ -13,7 +13,7 @@
 }
 
 body {
-  background-color: #F6F6F6;
+  background-color: #b30000;
   min-height: 100vh;
 }
 
@@ -21,4 +21,15 @@ button {
   border: none;
   border-radius: 3px;
   cursor: pointer;
+  background: none;
+}
+
+.lixeiraDel{
+  padding: 4px;
+  background-color: rgb(57 62 62 / 70%);
+  border-radius: 50%;
+}
+
+.lixeiraDel:hover{
+  background-color: rgb(55, 55, 55);
 }
