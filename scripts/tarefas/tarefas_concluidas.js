@@ -9,23 +9,54 @@ function rederizaTarefasConcluidas(listaTarefas) {
     var novoItemLiTarefaConcluida = document.createElement('li')
 
     novoItemLiTarefaConcluida.innerHTML =
-        `
+
+    `
     <li class="tarefa">
-        <div class="not-done" id="${listaTarefas.id}" ></div>
+    <div class="divAction">
+  
+    <button onclick=deletarTarefas(${listaTarefas.id})> <img class="lixeiraDel" src="./assets/Lixeira.png" height ="25" width="26" /> </button>
+    <button onclick="devolverTarefa(${listaTarefas.id}, '${listaTarefas.description}')"> <img src="./assets/arrow-up.png" height ="25" width="26" /> </button>
+   
+    
+    </div>
+      
         <div class="descricao">
 
-          <p class="nome">${listaTarefas.description}</p>          
-          <p class="timestamp"  >
-          Tarefa ${listaTarefas.description} criada em 
+        <p class="nome">${listaTarefas.description}</p>   
+        <p class="timestamp"  >
+          Pedido criado em 
           ${addData.toLocaleDateString()} às
           ${addData.getHours()}:${addData.getMinutes()}
           </p>
-          <button onclick="devolverTarefa(${listaTarefas.id}, '${listaTarefas.description}')"> <img src="./assets/arrow-up.png" height ="25" width="26" /> </button>
-          <button onclick=deletarTarefas(${listaTarefas.id})> <img src="./assets/Lixeira.png" height ="25" width="26" /> </button>
+
+          
         </div>
       </li>
-      
     `
+
+
+
+
+
+
+    //     `
+        
+    // <li class="tarefa">
+    //     <div class="not-done" id="${listaTarefas.id}" ></div>
+    //     <div class="descricao">
+
+    //       <p class="nome">${listaTarefas.description}</p>          
+    //       <p class="timestamp"  >
+    //       Tarefa ${listaTarefas.description} criada em 
+    //       ${addData.toLocaleDateString()} às
+    //       ${addData.getHours()}:${addData.getMinutes()}
+    //       </p>
+    //       <button onclick="devolverTarefa(${listaTarefas.id}, '${listaTarefas.description}')"> <img src="./assets/arrow-up.png" height ="25" width="26" /> </button>
+    //       <button onclick=deletarTarefas(${listaTarefas.id})> <img src="./assets/Lixeira.png" height ="25" width="26" /> </button>
+    //     </div>
+    //   </li>
+      
+    // `
 
     itemUlTarefasConcluidas.appendChild(novoItemLiTarefaConcluida);
 

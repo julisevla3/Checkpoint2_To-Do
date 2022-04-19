@@ -48,10 +48,7 @@ a {
 .imgBanner {
   width: auto;
   height: 350px;
-  filter: grayscale(100%);
- 
-  border-bottom: solid;
-  border-bottom-color: white;
+  filter: brightness();
 }
 
 #myVideo {
@@ -112,6 +109,17 @@ textarea {
   height: 189px;
   background-color: rgb(255, 255, 255);
   box-shadow: rgb(0 0 0 / 59%) 0px -8px 17px 0px, rgb(255 255 255 / 0%) -19px -20px 50px;
+}
+
+.designSpan2 {
+  position: relative;
+  top: 35px;
+  margin-left: calc(50% - 2.5em);
+  border-radius: 50%;
+  width: 112px;
+  height: 47px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgb(0 0 0 / 59%) 3px 4px 17px 0px, rgb(255 255 255 / 0%) -19px -20px 50px;
 }
 .nova-tarefa {
   position: relative;
@@ -203,11 +211,10 @@ textarea {
   align-items: center;
   margin-bottom: 3em;
 
-  height: calc(30vh);
 
   border-radius: 0px;
   background: linear-gradient(rgb(225 199 0 / 91%), rgb(247 255 110));
-  box-shadow: rgb(0 0 0 / 59%) 0px -8px 17px 0px, rgb(255 255 255 / 0%) -19px -20px 50px;
+  box-shadow: rgb(0 0 0 / 59%) -2px 15px 17px 0px, rgb(255 255 255 / 0%) -19px -20px 50px;
 }
 
 .divAction {
@@ -250,7 +257,7 @@ textarea {
   background-color: var(--secondary);
 } */
 
-.tarefa:not(:last-child) .not-done::after {
+/* .tarefa:not(:last-child) .not-done::after {
   content: '';
   position: absolute;
   top: 100%;
@@ -259,7 +266,7 @@ textarea {
   height: 4.5em;
   width: 2px;
   background-color: var(--secondary);
-}
+} */
 
 .tarefa .descricao {
   display: flex;
@@ -292,11 +299,10 @@ textarea {
   padding: .5em 1em;
   background-color: white;
   border-radius: .2em;
-  box-shadow: 3px 3px 5px lightgrey;
-  color: rgb(170, 170, 170);
+  color: rgb(95, 95, 95);
   font-weight: 400;
   font-size: 1.1em;
-  margin-left: calc(15% - 4em);
+  margin-left: calc(50% - 4em);
   z-index: 20;
 }
 
@@ -309,16 +315,16 @@ textarea {
 }
 
 .tarefas-terminadas i{
-  color: grey;
+  color: rgb(99, 99, 99);
   background-color: rgb(228, 228, 228);
 }
 .tarefas-terminadas button{
   margin-left: 10px;
 }
 
-.tarefas-terminadas .tarefa .descricao {
+/* .tarefas-terminadas .tarefa .descricao {
   background-color: rgb(228, 228, 228);
-}
+} */
 
 .tarefas-terminadas .tarefa .descricao .nome {
   color: grey;
@@ -333,13 +339,28 @@ textarea {
   color: rgb(214, 214, 214);
 }
 #skeleton .not-done{
-  background-color: rgb(189, 189, 189);
+  width: 1em;
+  height: 1em;
+  background-color: var(--app-grey);
+  margin-right: 1em;
+  border-radius: 50%;
+  cursor: pointer;
+  text-align: center;
+  color: grey;
+  filter: grayscale(10);
 }
 
 #skeleton{
   animation: trasparencia 1s infinite;
+  display: flex;
+  column-gap: 40px;
+  position: relative;
+  margin-right: calc(15% - 1.5em);
 }
 @keyframes trasparencia {
   0%{ opacity: 0.5;}
   100%{ opacity: 0.8;}
 }
+
+
+
