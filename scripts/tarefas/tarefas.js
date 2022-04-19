@@ -50,10 +50,11 @@ window.onload = function () {
         
         for (const tarefa of resposta) {
           if (tarefa.completed == false) {
-            document.getElementById("skeleton").remove();
+            
             let arrayListaTarefas = tarefa
             renderizaTarefasPendentes(arrayListaTarefas);
             console.log(arrayListaTarefas);
+            
           }
         }
 
@@ -61,7 +62,7 @@ window.onload = function () {
   }
 
   listarTarefas(endPointListarTarefas, configListarTarefas);
-
+  
   //Itens de Configuração para criar nova tarefa
   var endPointCriarTarefa = "https://ctd-todo-api.herokuapp.com/v1/tasks";
   var objetoNovaTarefa = {
@@ -128,7 +129,7 @@ window.onload = function () {
 
   listarTarefasConcluidas(endPointListarTarefas, configListarTarefas);
 
-  
+
   function teste() {
     console.log('TESTE');
   }
