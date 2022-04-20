@@ -30,7 +30,10 @@ function renderizaTarefasPendentes(listaTarefas) {
         </div>
       </li>
     `
-
+  var node = document.getElementById("skeleton");
+  if (typeof (node) != 'undefined' && node != null) {
+    node.remove()
+  }
   itemUlTarefasPendentes.appendChild(novoItemLiTarefa);
 
 }

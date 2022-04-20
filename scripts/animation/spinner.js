@@ -31,16 +31,14 @@ function ocultarSpinner() {
     
     let spinner = document.querySelector(".loader")
 
-    // left.classList.delete("hidden")
-    // right.classList.delete("hidden")
-
+    
     body.removeChild(spinner)
 }
 
 
 exibirSpinner();
 
-//sweetalert2
+
 
 
 }
