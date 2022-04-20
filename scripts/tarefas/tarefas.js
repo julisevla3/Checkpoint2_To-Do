@@ -47,22 +47,69 @@ window.onload = function () {
     fetch(endPoint, config)
       .then((resposta) => resposta.json())
       .then(function (resposta) {
-        
+
+        let qtdTarefaPendente = 0;
         for (const tarefa of resposta) {
+
           if (tarefa.completed == false) {
-            
+            qtdTarefaPendente++;
+            // removerSkeleton();
             let arrayListaTarefas = tarefa
             renderizaTarefasPendentes(arrayListaTarefas);
             console.log(arrayListaTarefas);
-            
           }
+        }
+
+        console.log(qtdTarefaPendente)
+        if (qtdTarefaPendente == 0) {
+          renderizarSkeleton();
         }
 
       })
   }
 
+  function renderizarSkeleton() {
+    const skeleton = `<div id="skeleton">
+    <li class="tarefa">
+      
+      <div class="not-done"></div>
+      <div class="descricao">
+        <p class="timestamp">Criada em: 15/07/21</p>
+        <p class="timestamp">Criada em: 15/07/21</p>
+      </div>
+    </li>
+    <li class="tarefa">
+      <div class="not-done"></div>
+      <div class="descricao">
+        <p class="timestamp">Criada em: 15/07/21</p>
+        <p class="timestamp">Criada em: 15/07/21</p>
+      </div>
+    </li>
+
+    <li class="tarefa">
+      <div class="not-done"></div>
+      <div class="descricao">
+        <p class="timestamp">Criada em: 15/07/21</p>
+        <p class="timestamp">Criada em: 15/07/21</p>
+      </div> 
+    </li>
+
+  </div>
+ </div>`
+
+    var tarefasPendentes = document.getElementById("tarefas-pendentes");
+    tarefasPendentes.innerHTML = skeleton;
+  }
+
+  function removerSkeleton() {
+    var tarefasPendentes = document.getElementById("tarefas-pendentes");
+    var skeleton = document.getElementById("skeleton");
+
+    tarefasPendentes.removeChild(skeleton);
+  }
+
   listarTarefas(endPointListarTarefas, configListarTarefas);
-  
+
   //Itens de Configuração para criar nova tarefa
   var endPointCriarTarefa = "https://ctd-todo-api.herokuapp.com/v1/tasks";
   var objetoNovaTarefa = {
@@ -77,7 +124,7 @@ window.onload = function () {
       .then(function (resultado) {
         location.reload();
         console.log(resultado);
-        
+
       })
   }
 
